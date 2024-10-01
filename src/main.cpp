@@ -7,10 +7,22 @@ using namespace std;
 
 int main() {
     CoffeeBeans c;
-    c.setStatus(true);
-    cout << c.getTemperature() << endl;
-    cout << c.getAmount() << endl;
-    cout << c.getTime() << endl;
-    cout << c.getStatus() << endl;
+    CoffeeGrinder g;
+    Group gr;
+    Milk m;
+    SteamNozzle st;
+    g.grind(c);
+    gr.boil(c);
+    st.steam(m);
+    cout << endl;
+    int allTime = c.getTime()+m.getTime();
+    cout << "Общее время: " << allTime;
+
+    
+    
+    
+    
+
+
     return 0;
 }

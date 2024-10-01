@@ -28,6 +28,7 @@ class CoffeeBeans : public DryIngredient {
 private:
     bool is_grinded;
 public:
+    CoffeeBeans() : is_grinded(false) {}
     void setStatus(bool s);
     bool getStatus() const;
 };
