@@ -6,23 +6,26 @@
 using namespace std;
 
 int main() {
-    CoffeeBeans c;
-    CoffeeGrinder g;
-    Group gr;
-    Milk m;
-    SteamNozzle st;
-    g.grind(c);
-    gr.boil(c);
-    st.steam(m);
-    cout << endl;
-    int allTime = c.getTime()+m.getTime();
-    cout << "Общее время: " << allTime;
+    Parser parser;
+    vector<Recipe> r;
+    parser.parse("recipes.txt", r);
+    cout << r[0].getName();
+    if (r[0].getName() == "Латте") {
+        Milk m1, m2;
+        CoffeeBeans c;
 
-    
-    
-    
-    
+        CoffeeGrinder cg;
+        Group gr;
+        SteamNozzle sn;
 
+        cg.grind(c);
+        gr.boil(c);
+        sn.steam(m1);
+        sn.steam(m2);
+
+        int time = c.getTime() + m1.getTime() + m2.getTime();
+        cout << "Общее время: " << time;
+    } 
 
     return 0;
 }
