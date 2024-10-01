@@ -16,7 +16,9 @@ int main() {
     st.steam(m);
     cout << endl;
     int allTime = c.getTime()+m.getTime();
-    cout << "Общее время: " << allTime;
+    cout << "Общее время: " << allTime << endl;
+
+    parcer("recipes.txt");
 
     
     
