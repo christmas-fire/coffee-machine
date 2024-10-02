@@ -1,47 +1,78 @@
 #include "coffee_machine.h"
 #include "ingredients.h"
-#include "cstdio"
 
 void CoffeeGrinder::grind(CoffeeBeans& c) {
-    printf("Кофе поступил на помол! Время: %d Статус: %d\n", c.getTime(), c.getStatus());
-    c.setTime(c.getTime()+15);
+    int time = 14 + rand() % (19 - 14 + 1);
+    c.setTime(c.getTime() + time);
     c.setStatus(true);
-    printf("Кофе закончил молоться! Время: %d Статус: %d\n", c.getTime(), c.getStatus());
 }
 
 void Group::boil(CoffeeBeans& c) {
     if (c.getStatus()) {
-        c.setTime(c.getTime()+20);
-        printf("Кофе сварился! Время: %d\n", c.getTime());
+        int time = 19 + rand() % (24 - 19 + 1);
+        c.setTime(c.getTime() + time);
     } else {
         printf("Кофе не молотый! Ошибка!");
     }
 }
 
 void Boiler::heat(Water& w) {
-    printf("Вода поступила в бойлер! Температура: %d Время: %d\n", w.getTemperature(), w.getTime());
     int toAdd = 100 - w.getTemperature();
-    w.setTemperature(w.getTemperature()+toAdd);
-    w.setTime(w.getTime()+toAdd);
-    printf("Вода закипела! Температура: %d Время: %d\n", w.getTemperature(), w.getTime());
+    w.setTemperature(w.getTemperature() + toAdd);
+    w.setTime(w.getTime() + toAdd);
 }
 
 void SteamNozzle::steam(WetIngredient& wi) {
-    printf("Молочный продукт поступил в форсунок! Температура: %d Время: %d\n", wi.getTemperature(), wi.getTime());
-    int toAdd = 65 - wi.getTemperature();
-    wi.setTemperature(wi.getTemperature()+toAdd);
-    wi.setTime(wi.getTime()+toAdd);
-    printf("Молочный продукт нагрелся в форсунке! Температура: %d Время: %d\n", wi.getTemperature(), wi.getTime());
+    int toAdd = (65 + rand() % (70 - 65 + 1)) - wi.getTemperature();
+    wi.setTemperature(wi.getTemperature() + toAdd);
+    wi.setTime(wi.getTime() + toAdd);
 }
 
-void SteamNozzle::mix(DryIngredient& ingredient) {
-    // 
+void SteamNozzle::mix(DryIngredient& di) {
+    di.setTime(di.getTime() + 10);
 }
 
-void SteamNozzle::add(Ingredient& ingredient) {
-    // 
+void SteamNozzle::add(Ingredient& ingredient, int amount) {
+    //
 }
 
-void CoffeeMachine::prepareCoffee() {
-    // 
+int CoffeeMachine::prepareCoffee(Recipe& r) {
+    r.getIngredients();
+    int timee = 0;
+    for(auto ingredient : r.getIngredients()) {
+        //std::cout << ingredient.first << " " << ingredient.second << std::endl;
+        if(ingredient.first == "молоко" || ingredient.first == "сливки") {
+            srand(time(NULL));
+            for(int i = 0; i < ingredient.second; i++) {
+                Milk milk;
+                nozzle.steam(milk);
+                timee += milk.getTime();
+            }
+           //delaem
+        }
+        else if(ingredient.first == "кофе") {
+            srand(time(NULL));
+            for(int i = 0; i < ingredient.second; i++) {           
+                CoffeeBeans cb;
+                grinder.grind(cb);
+                group.boil(cb);
+                timee += cb.getTime();
+            }
+        }
+        else if(ingredient.first == "вода") {
+            for(int i = 0; i < ingredient.second; i++) {
+                Water w;
+                boiler.heat(w);
+                timee += w.getTime();
+            }
+        }
+        else if(ingredient.first == "ванильный сахар") {
+            for(int i = 0; i < ingredient.second; i++) {
+                DryIngredient sugar;
+                nozzle.mix(sugar);
+                timee += sugar.getTime();
+            }
+        }
+    }
+    return timee;
 }

@@ -45,8 +45,4 @@ class Water : public WetIngredient {
     // вода
 };
 
-class Cream : public WetIngredient {
-    // сливки
-};
-
 #endif // INGREDIENTS_H

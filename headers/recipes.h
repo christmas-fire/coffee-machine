@@ -24,10 +24,4 @@ public:
     void parse(std::string filename, std::vector<Recipe>& r);
 };
 
-class Print {
-public:
-    void printMap(std::map<std::string, unsigned> ingredients);
-    void printVector(std::vector<Recipe> r);
-};
-
 #endif // RECIPES_H
