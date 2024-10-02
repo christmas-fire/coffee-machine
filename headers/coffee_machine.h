@@ -3,32 +3,31 @@
 
 #include "ingredients.h"
 #include "recipes.h"
-#include <cstdio>
-#include <iostream>
+#include "parser.h"
 #include <cstdlib>
 #include <ctime>
 
-class Recipe;
+// class Recipe;
 
-// Объявление класса кофемолки
+// Класс кофемолка
 class CoffeeGrinder {
 public:
     void grind(CoffeeBeans& c); // помол
 };
 
-// Объявление класса группы
+// Класс "группа"
 class Group {
 public:
     void boil(CoffeeBeans& c); // варкa
 };
 
-// Объявление класса бойлера
+// Класс бойлер
 class Boiler {
 public:
     void heat(Water& w); // нагрев
 };
 
-// Объявление класса форсунка
+// Класс форсунок
 class SteamNozzle {
 public:
     void steam(WetIngredient& ingredient); // нагрев
@@ -36,9 +35,7 @@ public:
     void add(Ingredient& ingredient, int amount); // добавить
 };
 
-
-
-// Объявление класса кофемашины целиком
+// Класс кофемашины целиком
 class CoffeeMachine {
 private:
     CoffeeGrinder grinder;
@@ -46,7 +43,7 @@ private:
     Boiler boiler;
     SteamNozzle nozzle;
 public:
-    int prepareCoffee(Recipe& r); // приготовить кофе
+    int prepareCoffee(Recipe& r); // "приготовить кофе" (узнать время)
 };
 
 #endif  // COFFEE_MACHINE_H

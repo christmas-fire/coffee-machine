@@ -1,13 +1,10 @@
 #ifndef RECIPES_H
 #define RECIPES_H
 
-#include "coffee_machine.h"
-#include "ingredients.h"
-#include "cstdio"
-#include "string"
 #include <map>
-#include <vector>
+#include <string>
 
+// Класс рецепта
 class Recipe {
 private:
     std::string name;
@@ -17,11 +14,6 @@ public:
     std::string getName() const;
     void setIngredients(std::map<std::string, unsigned>& ing);
     std::map<std::string, unsigned> getIngredients() const;
-};
-
-class Parser {
-public:
-    void parse(std::string filename, std::vector<Recipe>& r);
 };
 
 #endif // RECIPES_H

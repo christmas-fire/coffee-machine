@@ -1,5 +1,4 @@
 #include "coffee_machine.h"
-#include "ingredients.h"
 
 void CoffeeGrinder::grind(CoffeeBeans& c) {
     int time = 14 + rand() % (19 - 14 + 1);
@@ -12,7 +11,7 @@ void Group::boil(CoffeeBeans& c) {
         int time = 19 + rand() % (24 - 19 + 1);
         c.setTime(c.getTime() + time);
     } else {
-        printf("Кофе не молотый! Ошибка!");
+        return;
     }
 }
 
@@ -38,17 +37,15 @@ void SteamNozzle::add(Ingredient& ingredient, int amount) {
 
 int CoffeeMachine::prepareCoffee(Recipe& r) {
     r.getIngredients();
-    int timee = 0;
+    int allTime = 0;
     for(auto ingredient : r.getIngredients()) {
-        //std::cout << ingredient.first << " " << ingredient.second << std::endl;
         if(ingredient.first == "молоко" || ingredient.first == "сливки") {
             srand(time(NULL));
             for(int i = 0; i < ingredient.second; i++) {
                 Milk milk;
                 nozzle.steam(milk);
-                timee += milk.getTime();
+                allTime += milk.getTime();
             }
-           //delaem
         }
         else if(ingredient.first == "кофе") {
             srand(time(NULL));
@@ -56,23 +53,23 @@ int CoffeeMachine::prepareCoffee(Recipe& r) {
                 CoffeeBeans cb;
                 grinder.grind(cb);
                 group.boil(cb);
-                timee += cb.getTime();
+                allTime += cb.getTime();
             }
         }
         else if(ingredient.first == "вода") {
             for(int i = 0; i < ingredient.second; i++) {
                 Water w;
                 boiler.heat(w);
-                timee += w.getTime();
+                allTime += w.getTime();
             }
         }
         else if(ingredient.first == "ванильный сахар") {
             for(int i = 0; i < ingredient.second; i++) {
                 DryIngredient sugar;
                 nozzle.mix(sugar);
-                timee += sugar.getTime();
+                allTime += sugar.getTime();
             }
         }
     }
-    return timee;
+    return allTime;
 }

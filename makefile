@@ -2,7 +2,7 @@
 CXX = g++
 
 # Флаги компиляции
-CXXFLAGS =  -std=c++17 -I./headers # Добавляем -I./headers для указания директории с заголовочными файлами
+CXXFLAGS = -std=c++17 -I./headers # Добавляем -I./headers для указания директории с заголовочными файлами
   
 # Директории
 SRCDIR = src
@@ -13,10 +13,10 @@ HEADERSDIR = headers
 TARGET = $(BINDIR)/coffee_machine
 
 # Заголовочные файлы
-HEADERS = $(HEADERSDIR)/coffee_machine.h $(HEADERSDIR)/ingredients.h $(HEADERSDIR)/recipes.h $(HEADERSDIR)/menu.h
+HEADERS = $(HEADERSDIR)/coffee_machine.h $(HEADERSDIR)/ingredients.h $(HEADERSDIR)/recipes.h $(HEADERSDIR)/menu.h $(HEADERSDIR)/parser.h
 
 # Исходные файлы
-SRC = $(SRCDIR)/coffee_machine.cpp $(SRCDIR)/ingredients.cpp $(SRCDIR)/main.cpp $(SRCDIR)/recipes.cpp $(SRCDIR)/menu.cpp
+SRC = $(SRCDIR)/coffee_machine.cpp $(SRCDIR)/ingredients.cpp $(SRCDIR)/main.cpp $(SRCDIR)/recipes.cpp $(SRCDIR)/menu.cpp $(SRCDIR)/parser.cpp
 
 # Объектные файлы
 OBJ = $(SRC:.cpp=.o)
@@ -34,8 +34,9 @@ $(TARGET): $(OBJ)
 
 # Очистка всех сгенерированных файлов
 # rm -f $(OBJ) $(TARGET)
+# del /Q src\*.o bin\coffee_machine.exe
 clean:
-	del /Q src\*.o bin\coffee_machine.exe
+	rm -f $(OBJ) $(TARGET)
 	
 # Запуск программы после сборки
 run: $(TARGET)
