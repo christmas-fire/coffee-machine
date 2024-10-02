@@ -56,17 +56,3 @@ void Parser::parse(std::string filename, std::vector<Recipe>& r) {
     }
     file.close();
 }
-
-void Print::printMap(std::map<std::string, unsigned> ingredients) {
-    for(auto ingredient : ingredients) {
-        std::cout << ingredient.first << " " << ingredient.second << ", ";
-    }
-    std::cout << std::endl;
-}
-
-void Print::printVector(std::vector<Recipe> r) {
-    for (size_t i = 0; i < r.size(); i++) {
-        std::cout << "Рецепт под номером " << i << ". " << r[i].getName() << ": ";
-        Print::printMap(r[i].getIngredients());
-    }
-}

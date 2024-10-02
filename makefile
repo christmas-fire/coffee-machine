@@ -2,7 +2,7 @@
 CXX = g++
 
 # Флаги компиляции
-CXXFLAGS = -Wall -std=c++17 -I./headers # Добавляем -I./headers для указания директории с заголовочными файлами
+CXXFLAGS =  -std=c++17 -I./headers # Добавляем -I./headers для указания директории с заголовочными файлами
   
 # Директории
 SRCDIR = src
@@ -33,8 +33,9 @@ $(TARGET): $(OBJ)
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 # Очистка всех сгенерированных файлов
+# rm -f $(OBJ) $(TARGET)
 clean:
-	rm -f $(OBJ) $(TARGET)
+	del /Q src\*.o bin\coffee_machine.exe
 	
 # Запуск программы после сборки
 run: $(TARGET)

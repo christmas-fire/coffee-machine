@@ -2,6 +2,13 @@
 #define COFFEE_MACHINE_H
 
 #include "ingredients.h"
+#include "recipes.h"
+#include <cstdio>
+#include <iostream>
+#include <cstdlib>
+#include <ctime>
+
+class Recipe;
 
 // Объявление класса кофемолки
 class CoffeeGrinder {
@@ -26,17 +33,20 @@ class SteamNozzle {
 public:
     void steam(WetIngredient& ingredient); // нагрев
     void mix(DryIngredient& ingredient); // размешать
-    void add(Ingredient& ingredient); // добавить
+    void add(Ingredient& ingredient, int amount); // добавить
 };
+
+
 
 // Объявление класса кофемашины целиком
 class CoffeeMachine {
 private:
     CoffeeGrinder grinder;
+    Group group;
     Boiler boiler;
     SteamNozzle nozzle;
 public:
-    void prepareCoffee(); // приготовить кофе
+    int prepareCoffee(Recipe& r); // приготовить кофе
 };
 
 #endif  // COFFEE_MACHINE_H
