@@ -44,20 +44,20 @@ void Menu::start(std::vector<Recipe> r, CoffeeMachine& cm) {
         std::string name = searchName(r, input);
         std::cout << "+------------------------+" << std::endl;
         std::cout << "| Вы выбрали: "<< name << std::endl;
-        std::cout << "| Время изготовления: " << cm.prepareCoffee(r[input - 1]) << std::endl;
+        std::cout << "| Время изготовления: " << cm.prepareCoffee(r[input - 1]) << " сек" << std::endl;
         std::cout << "+------------------------+" << std::endl;
 
         std::string off;
-        std::cout << "Продолжить?\n";
+        std::cout << "Продолжить (1/0)?\n";
         std::cin >> off;
         
         if(off == "0") {
-            std::cout << "Машина выключена";
+            std::cout << "Машина выключена.";
             break;
         } else if(off == "1") {
             continue;
         } else {
-            std::cout << "ban";
+            std::cout << "Хватит баловаться!";
             break;
         }
         //Zapusk coffee_machine
