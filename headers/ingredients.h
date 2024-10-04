@@ -1,6 +1,7 @@
 #ifndef INGREDIENTS_H
 #define INGREDIENTS_H
 
+// Класс ингредиентов
 class Ingredient {
 private:
     int temperature; // температура
@@ -16,14 +17,17 @@ public:
     int getTime() const;
 };
 
+// Класс мокрых ингредиентов
 class WetIngredient : public Ingredient {
-    // мокрые ингредиенты
-};
- 
-class DryIngredient : public Ingredient {
-    // сухие ингредиенты
+    //
 };
 
+// Класс сухих ингредиентов
+class DryIngredient : public Ingredient {
+    //
+};
+
+// Класс кофейных зёрен
 class CoffeeBeans : public DryIngredient {
 private:
     bool is_grinded;
@@ -33,16 +37,19 @@ public:
     bool getStatus() const;
 };
 
+// Класс сахар
 class Sugar : public DryIngredient {
-    // сахар
+    // 
 };
 
+// Класс молоко
 class Milk : public WetIngredient {
-    // молоко
+    // 
 };
 
+// Класс вода
 class Water : public WetIngredient {
-    // вода
+    // 
 };
 
 #endif // INGREDIENTS_H
