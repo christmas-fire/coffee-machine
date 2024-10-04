@@ -36,7 +36,7 @@ $(TARGET): $(OBJ)
 # rm -f $(OBJ) $(TARGET)
 # del /Q src\*.o bin\coffee_machine.exe
 clean:
-	rm -f $(OBJ) $(TARGET)
+	del /Q src\*.o bin\coffee_machine.exe
 	
 # Запуск программы после сборки
 run: $(TARGET)
